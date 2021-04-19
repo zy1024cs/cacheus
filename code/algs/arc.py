@@ -22,7 +22,7 @@ class ARC:
         self.B2 = DequeDict()
 
         self.time = 0
-        self.visual = Visualizinator(labels=['hit-rate', 'W_lru'],
+        self.visual = Visualizinator(labels=['hit-rate', 'p_value'],
                                      windowed_labels=['hit-rate'],
                                      window_size=window_size,
                                      **kwargs)
@@ -126,7 +126,7 @@ class ARC:
             evicted = self.miss(oblock)
 
         # Visualizinator
-        self.visual.add({'W_lru': (self.time, float(self.p/self.cache_size), ts)})
+        self.visual.add({'p_value': (self.time, float(self.p/self.cache_size), ts)})
         self.visual.addWindow({'hit-rate': 0 if miss else 1}, self.time, ts)
 
         # Pollutionator
